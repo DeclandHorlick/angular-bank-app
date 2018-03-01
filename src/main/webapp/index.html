@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app = "accountApp">
 <head>
     <meta charset="UTF-8">
     <title>Banking Application</title>
@@ -13,6 +13,29 @@
         </div>
     </nav>
     
+    <div class="dashboard panel panel-default" ng-controller="accountController as accountCtrl">
+	    <div class="panel-heading">Accounts page</div>
+	    <div class="panel-body">
+   		{{accountCtrl.test}}
+   		<div ng-hide="accountCtrl.isHidden">
+        	<h3><span>Accounts table</span></h3>
+        	<table class="table">
+        		<tr >
+        		
+        			<th ng-click="accountCtrl.sortCol('firstName')" ng-style="myStyle">{{'first_name' | uppercase}}</th>
+        			<th ng-click="accountCtrl.sortCol('secondName')" ng-style="myStyle2">{{'surname' | uppercase}}</th>
+        			<th ng-style="myStyle3">{{'account_number' | uppercase}}</th>
+        		</tr>
+        		<tr ng-repeat="account in accountCtrl.accounts | orderBy:accountCtrl.killer">
+        			<td ng-style="myStyle">{{account.firstName}}</td>
+        			<td ng-style="myStyle2">{{account.secondName}}</td>
+        			<td ng-style="myStyle3">{{account.accountNumber}}</td>
+        		</tr>
+        	</table>
+        </div>
+        <button class="btn"ng-click="accountCtrl.hideTable()">Hide accounts</button>
+	</div>
+	
     <!-- Example 1: ng-hide, ng-model
     <div ng-hide="isHidden">
     Name: <input type="text" ng-model="name"/>{{name}}
@@ -29,33 +52,46 @@
     </div>
      -->
      
-    <!--
-    Example 3: ng-repeat and filters
-    <div ng-init ="accounts=[{'firstName': 'John', 'secondName': 'Doe','accountNumber': '1234'},{'firstName': 'Jane','secondName': 'Doe','accountNumber': '1235'}]">
+    
+    <!--Example 3: ng-repeat and filters
+    <div ng-init ="accounts=[{'firstName': 'John', 'secondName': 'Doe','accountNumber': '1234'},{'firstName': 'Jane','secondName': 'Doe','accountNumber': '1235'},{'firstName': 'Dec','secondName': 'Hor','accountNumber': '1337'},{'firstName': 'Tony','secondName': 'Shan','accountNumber': '9999'},{'firstName': 'Ian','secondName': 'Cun','accountNumber': '0000'},{'firstName': 'Bren','secondName': 'Grn','accountNumber': '1235'},{'firstName': 'Jane','secondName': 'Doe','accountNumber': '1235'},{'firstName': 'Jane','secondName': 'Doe','accountNumber': '1235'}]">
     	<h3><span>Simple example</span></h3>
     	<ul>
     		<li ng-repeat="account in accounts">{{account}}</li>
     	</ul>
     	<h3><span>Table example</span></h3>
-    	<table>
-    		<tr>
-    			<th>first</th>
-    			<th>second</th>
-    			<th>number</th>
-    		</tr>
+    	<table ng-hide="isHidden" class = "table table-striped">
+    		<tr ng-style="myStyle">
+    			<th>First Name </th>
+    			<th>Second Name</th>
+    			<th>Number</th>
+    		</tr ng-style="myStyle2">
     		<tr ng-repeat="account in accounts">
-    			<td>{{account.firstName |  uppercase}}</td>
+    			<td>{{account.firstName |  lowercase}}</td>
     			<td>{{account.secondName | uppercase}}</td>
     			<td>{{account.accountNumber}}</td>
     		</tr>
     	</table>
+    	 <p>Hide div: <input type="checkbox" ng-model="isHidden"/></p>
+    	 <input type="button" value="set background" ng-click="myStyle={'background-color':'green'}">
     </div>
     -->
+    <div ng-controller ="accountController as accountCtrl">
+    {{accountCtrl.name}}
+    {{accountCtrl.test}}
+    <button ng-click = "accountCtrl.myFunc()">Click</button>
+    </div>
+    
 	<link rel="stylesheet" href="scripts/bootstrap.min.css"> 
     <script src="scripts/jquery-2.1.4.min.js"></script>
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/ui-router.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controllers/account-controller.js"></script>
     </div>
+    <input type="button" value="set background" ng-click="myStyle={'background-color':'green'}">
+    <input type="button" value="set background" ng-click="myStyle2={'background-color':'white'}">
+    <input type="button" value="set background" ng-click="myStyle3={'background-color':'orange'}">
 </body>
 </html>
