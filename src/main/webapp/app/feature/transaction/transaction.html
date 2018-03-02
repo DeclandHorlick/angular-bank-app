@@ -1,0 +1,24 @@
+<div ng-controller="transactionController as transactionCtrl">
+<div>
+Account Number: <input type="text" ng-model="transactionCtrl.name"/>{{name}}
+<!--<button class="btn"ng-click="transactionCtrl.getName(transactionCtrl.name)">-->
+<button class="btn" ng-click="transactionCtrl.displayFilter(transactionCtrl.name)">Go</button>
+
+<p>{{transactionCtrl.transactionId}}</p>
+</div>
+   		<div>
+        	<h3><span>Accounts table</span></h3>
+        	<table class="table">
+        		<tr>
+        			<th>{{'Transaction_Id' | uppercase}}</th>
+        			<th>{{'account_number' | uppercase}}</th>
+        			<th>{{'More Info' | uppercase}}</th>
+        		</tr>
+        		<tr ng-repeat="transaction in transactionCtrl.transactionList | filter : transactionCtrl.filter">
+        			<td>{{transaction.transactionId}}</td>
+        			<td>{{transaction.accountNumber}}</td>
+        			<td><button class="editbtn" ng-click="transactionCtrl.passPar(transaction.transactionId)">edit</button></td>
+        		</tr>
+        	</table>
+        </div>        
+</div>
