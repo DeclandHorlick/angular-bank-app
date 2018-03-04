@@ -31,14 +31,14 @@
             $log.log(accID);
             var curAccObj = {id:accID.id}
             accountService.deleteAccount(curAccObj).then(function (result) {
-
+                init();
                 $log.log("inside delete account ");
 
             }, function (error) {
                 vm.error = true;
                 vm.errorMessage = accountHasNotBeenDeleted;
             });
-            $state.go("account");
+            
         }
 
         vm.updateThisAccount = function (accountId,firstName, secondName, accountNumber ) {
