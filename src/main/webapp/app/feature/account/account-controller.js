@@ -2,7 +2,7 @@
 
 (function() {
 
-    var AccountController =  function(accountService, $log) {
+    var AccountController =  function(accountService, $log, $state) {
         
         $log.log("Account controller created now");
     	var vm = this;
@@ -23,11 +23,37 @@
                 vm.error = true;
                 vm.errorMessage = error;
             });
-       }
+        }
+
+        vm.deleteThisAccount = function (accID) {
+
+            $log.log("Trying to delete account ");
+            $log.log(accID);
+            var curAccObj = {id:accID.id}
+            accountService.deleteAccount(curAccObj).then(function (result) {
+
+                $log.log("inside delete account ");
+
+            }, function (error) {
+                vm.error = true;
+                vm.errorMessage = accountHasNotBeenDeleted;
+            });
+            init();
+        }
+
+        vm.updateThisAccount = function (accountId,firstName, secondName, accountNumber ) {
+
+            $log.log("Trying to update account ");
+            $log.log(firstName, secondName, accountNumber, accountId);
+            var curAccObj = {  id: accountId, firstName: firstName, secondName: secondName, accountNumber: accountNumber };
+            $state.go('updateAccount', curAccObj);
+            
+            
+        }
        
        init();
             
     };
 
-    angular.module('accountApp').controller('accountController', ['accountService','$log', AccountController]);
+    angular.module('accountApp').controller('accountController', ['accountService','$log', '$state', AccountController]);
 }());

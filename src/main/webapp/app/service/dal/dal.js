@@ -38,6 +38,7 @@
                 },
 
                 PUT: function (apiPath, itemToSave) {
+                    $log.log("dal " + itemToSave);
                     var deferred = $q.defer();
                     $http(
                         {

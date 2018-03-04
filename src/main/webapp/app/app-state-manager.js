@@ -14,6 +14,13 @@
         }).state("addAccount", {
                 url: "/account/add",
                 templateUrl: "app/feature/account/addAccount/addAcc.html"
+        }).state("updateAccount", {
+            url: "/account/update",
+            templateUrl: "app/feature/account/updateAccount/updateAccount.html",
+            params: { firstName: null,
+                secondName: null,
+                accountNumber: null,
+                id: null}
         })
     });
 }());

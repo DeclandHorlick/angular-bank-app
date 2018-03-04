@@ -18,20 +18,20 @@
    			vm.currentAccountN = document.getElementById('accountNum').value;
    			$log.log(vm.currentAccountN);
    			
-   			vm.herro = {firstName: vm.currentFirstN,
+   			vm.newAccount = {firstName: vm.currentFirstN,
         				secondName: vm.currentSecondN,
         				accountNumber: vm.currentAccountN};
    			
          
          }
          vm.init = function() {vm.getInputs();
-        	accountService.saveAccount(vm.herro).then(function (results) {
+             accountService.saveAccount(vm.newAccount).then(function (results) {
         	
         	
         	console.log(vm.currentFirstN);
         	
         	
-        	console.log(vm.herro);
+        	console.log(vm.newAccount);
            	vm.accounts = results;
            	
            	
@@ -41,10 +41,12 @@
         	
             }, function (error) {
                 vm.error = true;
-                vm.errorMessage = error;
+                vm.errorMessage = accountnotcreated;
             });
-            $log.log(vm.herro);
-       }
+             $log.log(vm.newAccount);
+         }
+
+         
        
       
      };

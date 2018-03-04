@@ -4,23 +4,24 @@
 	    <div>
    		<label>
        First name:
-       <input  type="text" name="first_name" id = "accountFname" ng-model="addCtrl.currentFirstName" required>
+       <input  type="text" name="first_name" id = "accountFname" ng-model="addCtrl.currentFirstName" required>*
        </div>
     </label>
     <div>
     <label>
        Second name:
-       <input  type="text" name="second_name" id = "accountSname" ng-model="addCtrl.currentSecondName" required >
+       <input  type="text" name="second_name" id = "accountSname" ng-model="addCtrl.currentSecondName" required >*
        </div>
     </label>
     <div>
     <label>
        Account Number:
-       <input  type="text" name="account_num" id = "accountNum" ng-model="addCtrl.accNumber" required>
+       <input  type="text" name="account_num" id = "accountNum" ng-model="addCtrl.accNumber" required>* This must be 4 numbers
     </label>
     </div>
     <div>
-    <button type="button" class="btn btn-danger" ng-click="addCtrl.init()">Create Account
+    <a ui-sref="account" ng-click="addCtrl.init()" 
+    </a>Create Account
     </div>
 	</div>
 </div>
