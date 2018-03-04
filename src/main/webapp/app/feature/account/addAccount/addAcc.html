@@ -1,27 +1,26 @@
 <div class="panel panel-default" ng-controller="addAccountController as addCtrl">
-	    <div class="panel-heading">New Account Page</div>
-	    <div class="panel-body">
-	    <div>
+   <div class="panel-heading">New Account Page</div>
+	  <div class="panel-body">
+	   <form name="newAccountForm" ng-submit="addCtrl.init()" novalidate>
+      <div class="form-group">
    		<label>
-       First name:
-       <input  type="text" name="first_name" id = "accountFname" ng-model="addCtrl.currentFirstName" required>*
+       First name: </label>
+       <input  type="text" name="first_name" id="accountFname" ng-model="addCtrl.currentFirstName" ng-minlength="3" ng-maxlength="20"  ng-not-empty="true" ng-required="true" >*
+       <span style="color:red;" ng-show="newAccountForm.first_name.$touched && newAccountForm.first_name.$invalid">Please enter a name with atleast 3 characters</span>   
+       </div>  
+       <div class="form-group">
+       <label>
+       Second name:</label>
+       <input  type="text" name="second_name" id="accountSname" ng-model="addCtrl.currentSecondName" ng-minlength="3" ng-maxlength="20" ng-not-empty="true" ng-required="true">*
+       <span style="color:red;" ng-show="newAccountForm.second_name.$touched && newAccountForm.second_name.$invalid">Please enter a name with atleast 3 characters</span>
        </div>
-    </label>
-    <div>
-    <label>
-       Second name:
-       <input  type="text" name="second_name" id = "accountSname" ng-model="addCtrl.currentSecondName" required >*
+       <div class="form-group">
+       <label>
+       Account Number:</label>
+       <input  type="text" name="account_num" id="accountNum" ng-model="addCtrl.accNumber" ng-minlength="4" ng-maxlength="4"  ng-not-empty="true" ng-required="true">* This must be 4 numbers
+       <span style="color:red;" ng-show="newAccountForm.account_num.$touched && newAccountForm.account_num.$invalid">Please enter Four numbers </span>
        </div>
-    </label>
-    <div>
-    <label>
-       Account Number:
-       <input  type="text" name="account_num" id = "accountNum" ng-model="addCtrl.accNumber" required>* This must be 4 numbers
-    </label>
-    </div>
-    <div>
-    <a ui-sref="account" ng-click="addCtrl.init()" 
-    </a>Create Account
-    </div>
+       <button ng-disabled="newAccountForm.$invalid" type="submit" class="btn btn-default">Create Account</button>
+    </form>
 	</div>
 </div>

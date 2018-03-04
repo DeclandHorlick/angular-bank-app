@@ -2,7 +2,7 @@
 
 (function() {
 	
-    var AddAccountController =  function(accountService, $log) {
+    var AddAccountController = function (accountService, $log, $state) {
  	var vm = this;
    vm.currentFirstN;
    vm.currentSecondN;  
@@ -44,6 +44,7 @@
                 vm.errorMessage = accountnotcreated;
             });
              $log.log(vm.newAccount);
+             $state.go("account");
          }
 
          
@@ -51,5 +52,5 @@
       
      };
 
-    angular.module('accountApp').controller('addAccountController', ['accountService','$log', AddAccountController]);
+    angular.module('accountApp').controller('addAccountController', ['accountService','$log','$state', AddAccountController]);
 }());

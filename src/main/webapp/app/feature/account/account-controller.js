@@ -38,7 +38,7 @@
                 vm.error = true;
                 vm.errorMessage = accountHasNotBeenDeleted;
             });
-            init();
+            $state.go("account");
         }
 
         vm.updateThisAccount = function (accountId,firstName, secondName, accountNumber ) {

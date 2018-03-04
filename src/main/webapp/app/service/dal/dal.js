@@ -2,7 +2,7 @@
 
 (function () {
 
-    function Dal ($http, $q, $log) {
+    function Dal ($http, $q, $log,$state) {
     	
         this.http = (function serviceCaller() {
             return {
@@ -38,7 +38,6 @@
                 },
 
                 PUT: function (apiPath, itemToSave) {
-                    $log.log("dal " + itemToSave);
                     var deferred = $q.defer();
                     $http(
                         {
@@ -55,6 +54,7 @@
                         }, function (e) {
                             deferred.reject(e);
                         });
+                    
                     return deferred.promise;
                 },
 
@@ -72,5 +72,5 @@
         
         $log.debug("DAL Instantiated");
     }
-    angular.module("accountApp").service("dal", ["$http", "$q", "$log", Dal]);
+    angular.module("accountApp").service("dal", ["$http", "$q", "$log", "$state", Dal]);
 }());
